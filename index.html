@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoveCrédito - Pagamento</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 50px;
+            margin: 0;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        p {
+            color: #555;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            max-width: 500px;
+            margin: auto;
+        }
+
+        input[type="email"], button {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .pix-code {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 20px;
+            word-wrap: break-word;
+        }
+
+        .success {
+            color: green;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        a {
+            color: #007BFF;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Bem-vindo ao MoveCrédito</h1>
+        <p>Realize seu pagamento via Pix abaixo:</p>
+
+        <input type="email" id="email" placeholder="Digite seu e-mail">
+        <button onclick="generatePixCode()">Gerar Código Pix</button>
+
+        <div id="pixSection" style="display:none;">
+            <h3>Código Pix:</h3>
+            <div class="pix-code" id="pixCode">00020126580014br.gov.bcb.pix01361b5806c7</div>
+            <button onclick="copyPixCode()">Copiar Código</button>
+
+            <p class="success" id="copyMessage" style="display:none;">✅ Código Pix copiado com sucesso!</p>
+        </div>
+
+        <p><a href="https://emanuey.github.io/movecredito/">Acesse o site principal</a></p>
+    </div>
+
+    <script>
+        function generatePixCode() {
+            const email = document.getElementById('email').value;
+            if (!email) {
+                alert('Por favor, insira um e-mail válido.');
+                return;
+            }
+
+            document.getElementById('pixSection').style.display = 'block';
+        }
+
+        function copyPixCode() {
+            const pixCode = document.getElementById('pixCode').innerText;
+            navigator.clipboard.writeText(pixCode).then(() => {
+                document.getElementById('copyMessage').style.display = 'block';
+                setTimeout(() => {
+                    document.getElementById('copyMessage').style.display = 'none';
+                }, 2000);
+            });
+        }
+    </script>
+
+</body>
+</html>
